@@ -1,3 +1,13 @@
 {
-  "extends": ["next/core-web-vitals", "airbnb-base", "plugin:prettier/recommended"]
+  "extends": ["next/core-web-vitals", "airbnb", "airbnb-typescript", "plugin:prettier/recommended"],
+  "parserOptions": {
+    "parser": "@tyepscript-eslint/parser",
+    "project": ["./tsconfig.json"]
+  },
+  "plugins": ["react"],
+  "rules": {
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
+  },
+  "ignorePatterns": ["node_modules/*", ".next/*", "public/", "styles/"]
 }
