@@ -1,15 +1,13 @@
 import {
   AppBar,
-  Avatar,
+  Autocomplete,
   Box,
-  Button,
   Container,
   IconButton,
   Menu,
   MenuItem,
   Stack,
   Toolbar,
-  Tooltip,
   Typography,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -49,7 +47,7 @@ function Header() {
           <Typography variant="h6" noWrap component={NextLink} href="/">
             Ratebird
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -75,7 +73,7 @@ function Header() {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: 'block',
               }}
             >
               {pages.map((page) => (
@@ -92,21 +90,19 @@ function Header() {
               justifyContent: 'center',
             }}
           >
-            <Stack direction="row" spacing={2}>
-              {pages.map((page) => (
-                <NextLink
-                  key={page.title}
-                  href={page.link}
-                  onClick={handleCloseNavMenu}
-                >
-                  {page.title}
-                </NextLink>
-              ))}
-            </Stack>
+            <SearchBar />
           </Box>
 
-          {isAuth && <AuthSettings />}
-          {!isAuth && <AnonSettings />}
+          <Box
+            sx={{
+              flexGrow: { xs: 1, md: 0 },
+              display: { xs: 'flex', md: 'flex' },
+              justifyContent: { xs: 'right' },
+            }}
+          >
+            {isAuth && <AuthSettings />}
+            {!isAuth && <AnonSettings />}
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>

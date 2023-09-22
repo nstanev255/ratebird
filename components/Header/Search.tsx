@@ -1,4 +1,4 @@
-import { alpha, InputBase, styled } from '@mui/material';
+import { InputBase, styled } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 const Search = styled('div')(({ theme }) => ({
@@ -33,9 +33,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      width: '12ch',
+      width: '30ch',
       '&:focus': {
-        width: '20ch',
+        width: '35ch',
       },
     },
   },
