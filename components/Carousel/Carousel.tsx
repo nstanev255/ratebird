@@ -19,7 +19,7 @@ function Carousel({ items }: CarouselProps) {
       swipe={false}
     >
       {items.map((value) => (
-        <CarouselItem item={value} />
+        <CarouselItem key={value.name} item={value} />
       ))}
     </MUICarousel>
   );

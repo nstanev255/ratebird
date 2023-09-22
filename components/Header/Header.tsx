@@ -1,12 +1,10 @@
 import {
   AppBar,
-  Autocomplete,
   Box,
   Container,
   IconButton,
   Menu,
   MenuItem,
-  Stack,
   Toolbar,
   Typography,
 } from '@mui/material';
@@ -16,7 +14,7 @@ import NextLink from 'next/link';
 import React, { useState } from 'react';
 import AuthSettings from '@/components/Header/AuthSettings';
 import AnonSettings from '@/components/Header/AnonSettings';
-import SearchBar from '@/components/Header/Search';
+import SearchBar from '@/components/Header/SearchBar';
 
 function Header() {
   const isAuth = false;
