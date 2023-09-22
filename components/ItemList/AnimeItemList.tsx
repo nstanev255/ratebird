@@ -1,15 +1,17 @@
 import { Grid, Typography } from '@mui/material';
 import AnimeCard, { AnimeCardProps } from '@/components/Card/AnimeCard';
 
-type AnimeItemListProps = {
+interface AnimeItemListProps {
   title: string;
   items: Array<AnimeCardProps>;
-};
+}
 
 function AnimeItemList({ items, title }: AnimeItemListProps) {
   return (
-    <div>
-      <Typography variant="h4">{title}</Typography>
+    <div className="mt-4">
+      <Typography textAlign="center" variant="h4">
+        {title}
+      </Typography>
       <hr />
       <Grid container marginTop={1} gap={1} justifyContent="center">
         {items.map((item) => (

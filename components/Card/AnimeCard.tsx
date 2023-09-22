@@ -9,6 +9,7 @@ import {
   Grid,
   IconButton,
   IconButtonProps,
+  Rating,
   styled,
   Typography,
 } from '@mui/material';
@@ -16,6 +17,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import { useState } from 'react';
+import NextLink from 'next/link';
 
 export type AnimeCardProps = {
   id: string;
@@ -43,58 +45,63 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 function AnimeCard(props: AnimeCardProps) {
   const [expanded, setExpanded] = useState(false);
-  const { image, title, description, genres, rating } = props;
+  const { id, image, title, description, genres, rating } = props;
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
   return (
-    <Card>
-      <CardActionArea style={{ maxWidth: '250px' }}>
-        <CardMedia
-          style={{ objectFit: 'cover' }}
-          component="img"
-          image={image}
-          alt={title}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {title}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {description}
-          </Typography>
-        </CardContent>
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
+    <Card style={{ maxWidth: '250px' }}>
+      <NextLink href={`/anime/${id}`} passHref>
+        <CardActionArea>
+          <CardMedia
+            style={{ objectFit: 'cover' }}
+            component="img"
+            image={image}
+            alt={title}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {title}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {description}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <Rating name="half-rating" defaultValue={rating} precision={0.5} />
+      </NextLink>
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <NextLink href={`/anime/${id}`} passHref>
           <IconButton aria-label="share">
             <ReadMoreIcon />
           </IconButton>
-          <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </ExpandMore>
-        </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <Grid container spacing={0.5}>
-              {genres.map((name) => (
-                <Grid item>
-                  <Button key={name} size="small" variant="outlined">
-                    {name}
-                  </Button>
-                </Grid>
-              ))}
-            </Grid>
-          </CardContent>
-        </Collapse>
-      </CardActionArea>
+        </NextLink>
+        <ExpandMore
+          expand={expanded}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+        </ExpandMore>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Grid container spacing={0.5}>
+            {genres.map((name) => (
+              <Grid item>
+                <Button key={name} size="small" variant="outlined">
+                  {name}
+                </Button>
+              </Grid>
+            ))}
+          </Grid>
+        </CardContent>
+      </Collapse>
     </Card>
   );
 }
