@@ -42,9 +42,11 @@ function Header() {
       <Container>
         <Toolbar>
           <Image src="/favicon.png" width={50} height={50} alt="FreeBird" />
-          <Typography variant="h6" noWrap component={NextLink} href="/">
-            Ratebird
-          </Typography>
+          <NextLink href="/" passHref>
+            <Typography variant="h6" noWrap>
+              Ratebird
+            </Typography>
+          </NextLink>
           <Box>
             <IconButton
               size="large"

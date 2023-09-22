@@ -5,6 +5,7 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Checkbox,
   Collapse,
   Grid,
   IconButton,
@@ -13,11 +14,11 @@ import {
   styled,
   Typography,
 } from '@mui/material';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import { useState } from 'react';
 import NextLink from 'next/link';
+import { Favorite, FavoriteBorder } from '@mui/icons-material';
 
 export type AnimeCardProps = {
   id: string;
@@ -73,7 +74,7 @@ function AnimeCard(props: AnimeCardProps) {
       </NextLink>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+          <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
         </IconButton>
         <NextLink href={`/anime/${id}`} passHref>
           <IconButton aria-label="share">

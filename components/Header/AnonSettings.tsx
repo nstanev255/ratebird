@@ -1,10 +1,10 @@
 import { Stack } from '@mui/material';
-import NextLink from 'next/link';
+import Link from 'next/link';
 
 function AnonSettings() {
   return (
     <Stack>
-      <NextLink href="/login">Login</NextLink>
+      <Link href="/login">Login</Link>
     </Stack>
   );
 }
