@@ -113,16 +113,16 @@ const hotItems = [
   },
 ];
 
-function Recent() {
+function Seasonal() {
   return (
     <>
       <Head>
-        <title>Ratebird | Recent</title>
+        <title>Ratebird | Seasonal</title>
       </Head>
       <Container>
         <AnimeItemList
-          title="Recent"
-          description="Recently updated anime"
+          title="Seasonal"
+          description="Seasonal anime"
           items={hotItems}
         />
         <Box marginTop={1} display="flex" justifyContent="center">
@@ -133,4 +133,4 @@ function Recent() {
   );
 }
 
-export default Recent;
+export default Seasonal;

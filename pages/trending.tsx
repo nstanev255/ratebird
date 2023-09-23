@@ -113,16 +113,16 @@ const hotItems = [
   },
 ];
 
-function Recent() {
+function Trending() {
   return (
     <>
       <Head>
-        <title>Ratebird | Recent</title>
+        <title>Ratebird | Trending</title>
       </Head>
       <Container>
         <AnimeItemList
-          title="Recent"
-          description="Recently updated anime"
+          title="Trending"
+          description="Trending anime"
           items={hotItems}
         />
         <Box marginTop={1} display="flex" justifyContent="center">
@@ -133,4 +133,4 @@ function Recent() {
   );
 }
 
-export default Recent;
+export default Trending;
