@@ -19,6 +19,7 @@ import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import { useState } from 'react';
 import NextLink from 'next/link';
 import { Favorite, FavoriteBorder } from '@mui/icons-material';
+import normalizeText from '@/utils/normalizeText';
 
 export type AnimeCardProps = {
   id: string;
@@ -56,17 +57,17 @@ function AnimeCard(props: AnimeCardProps) {
       <NextLink href={`/anime/${id}`} passHref>
         <CardActionArea>
           <CardMedia
-            style={{ objectFit: 'cover' }}
+            style={{ width: '250px', height: '250px' }}
             component="img"
             image={image}
             alt={title}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              {title}
+              {normalizeText(title, 25)}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {description}
+              {normalizeText(description, 70)}
             </Typography>
           </CardContent>
         </CardActionArea>

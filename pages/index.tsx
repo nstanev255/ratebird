@@ -1,11 +1,17 @@
 import Head from 'next/head';
-import Header from '@/components/Header/Header';
 import Carousel from '@/components/Carousel/Carousel';
 import { CarouselItemType } from '@/components/Carousel/CarouselItem';
 import { Container } from '@mui/material';
 import AnimeItemList from '@/components/ItemList/AnimeItemList';
+import { AnimeCardProps } from '@/components/Card/AnimeCard';
+import getUpcomingTrending from '@/api/ratebird-api/getUpcomingTrending';
+import getSeasonalTrending from '@/api/ratebird-api/getSeasonalTrending';
 
-export default function Home() {
+type HomeProps = {
+  seasonTrending: Array<AnimeCardProps>;
+  upcomingTrending: Array<AnimeCardProps>;
+};
+export default function Home({ seasonTrending, upcomingTrending }: HomeProps) {
   const topItems: CarouselItemType[] = [
     {
       name: 'Tate no Yuusha no Nariagari Season 3',
@@ -75,11 +81,20 @@ export default function Home() {
         <Container className="mt-5">
           <Carousel items={topItems} />
 
-          <AnimeItemList title="Trending this season" items={hotItems} />
+          <AnimeItemList title="Trending this season" items={seasonTrending} />
           <AnimeItemList title="Newest updates" items={hotItems} />
-          <AnimeItemList title="Upcoming anime" items={hotItems} />
+          <AnimeItemList title="Upcoming anime" items={upcomingTrending} />
         </Container>
       </main>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const seasonTrending = await getSeasonalTrending();
+  const upcomingTrending = await getUpcomingTrending();
+
+  return {
+    props: { seasonTrending, upcomingTrending },
+  };
 }
