@@ -7,6 +7,7 @@ import {
   MenuItem,
   Toolbar,
   Typography,
+  useTheme,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Image from 'next/image';
@@ -37,8 +38,13 @@ function Header() {
     setAnchorElNav(null);
   };
 
+  const theme = useTheme();
+
   return (
-    <AppBar position="static" color="transparent">
+    <AppBar
+      position="static"
+      color={theme.palette.mode !== 'dark' ? 'transparent' : undefined}
+    >
       <Container>
         <Toolbar>
           <Image src="/favicon.png" width={50} height={50} alt="FreeBird" />

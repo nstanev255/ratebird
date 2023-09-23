@@ -72,7 +72,6 @@ export default function Home() {
         />
       </Head>
       <main>
-        <Header />
         <Container className="mt-5">
           <Carousel items={topItems} />
 

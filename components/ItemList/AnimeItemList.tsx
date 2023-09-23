@@ -1,4 +1,4 @@
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography, useTheme } from '@mui/material';
 import AnimeCard, { AnimeCardProps } from '@/components/Card/AnimeCard';
 
 interface AnimeItemListProps {
@@ -9,7 +9,7 @@ interface AnimeItemListProps {
 function AnimeItemList({ items, title }: AnimeItemListProps) {
   return (
     <div className="mt-4">
-      <Typography textAlign="center" variant="h4">
+      <Typography color="text.primary" textAlign="center" variant="h4">
         {title}
       </Typography>
       <hr />
