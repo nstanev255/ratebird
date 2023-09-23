@@ -4,7 +4,7 @@ import Link from 'next/link';
 function AnonSettings() {
   return (
     <Stack>
-      <Link href="/login">Login</Link>
+      <Link href="/login">Sign in</Link>
     </Stack>
   );
 }
