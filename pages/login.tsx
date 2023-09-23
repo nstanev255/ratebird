@@ -27,6 +27,7 @@ function Login() {
             height: '100vh',
             filter: 'brightness(0.4)',
             backgroundImage: 'url("https://pic.re/image")',
+            backgroundRepeat: 'no-repeat',
           }}
         />
         <Container
