@@ -20,27 +20,23 @@ function Login() {
         display="flex"
         position="relative"
         textAlign="center"
-        overflow="hidden"
       >
         <div
           style={{
             width: '100%',
             height: '100vh',
-            filter: 'blur(10px)',
-            transform: 'scale(1.1)',
-            overflow: 'hidden',
-            backgroundImage:
-              'url("https://r4.wallpaperflare.com/wallpaper/506/714/527/anime-the-rising-of-the-shield-hero-naofumi-iwatani-raphtalia-the-rising-of-the-shield-hero-tate-no-yuusha-no-nariagari-hd-wallpaper-093038cd716a9d8bc62748af70c1069d.jpg")',
+            filter: 'brightness(0.4)',
+            backgroundImage: 'url("https://pic.re/image")',
           }}
         />
         <Container
           component="main"
           maxWidth="lg"
-          sx={{ position: 'absolute', marginTop: '20vh' }}
+          sx={{ position: 'absolute', marginTop: { xs: '0', md: '20vh' } }}
         >
           <Box
             sx={{
-              marginTop: 8,
+              marginTop: { xs: 15, md: 8 },
             }}
           >
             <Grid container>
@@ -51,7 +47,7 @@ function Login() {
                 sm={4}
                 md={7}
                 sx={{
-                  backgroundImage: 'url(https://source.unsplash.com/random)',
+                  backgroundImage: 'url(https://pic.re/image)',
                   backgroundRepeat: 'no-repeat',
                   backgroundColor: (t) =>
                     t.palette.mode === 'light'
