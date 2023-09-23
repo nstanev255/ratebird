@@ -91,8 +91,8 @@ export default function Home({ seasonTrending, upcomingTrending }: HomeProps) {
 }
 
 export async function getStaticProps() {
-  const seasonTrending = await getSeasonalTrending();
-  const upcomingTrending = await getUpcomingTrending();
+  const seasonTrending = await getSeasonalTrending(8);
+  const upcomingTrending = await getUpcomingTrending(8);
 
   return {
     props: { seasonTrending, upcomingTrending },

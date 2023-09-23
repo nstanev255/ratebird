@@ -1,9 +1,12 @@
-async function getUpcomingTrending() {
-  const response = await fetch(
+import axios from 'axios';
+
+async function getUpcomingTrending(limit?: number) {
+  const response = await axios.get(
     'http://127.0.0.1:8000/api/anime/upcoming/trending',
+    { params: { limit } },
   );
 
-  return response.json();
+  return response.data;
 }
 
 export default getUpcomingTrending;
