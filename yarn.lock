@@ -296,7 +296,7 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@mui/base@5.0.0-beta.16", "@mui/base@^5.0.0-beta.16":
+"@mui/base@5.0.0-beta.16":
   version "5.0.0-beta.16"
   resolved "https://registry.npmjs.org/@mui/base/-/base-5.0.0-beta.16.tgz"
   integrity sha512-OYxhC81c9bO0wobGcM8rrY5bRwpCXAI21BL0P2wz/2vTv4ek7ALz9+U5M8wgdmtRNUhmCmAB4L2WRwFRf5Cd8Q==
