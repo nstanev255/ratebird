@@ -21,9 +21,8 @@ function Header() {
   const isAuth = false;
 
   const pages = [
-    { title: 'Home', link: '/home' },
     { title: 'Recent', link: '/recent' },
-    { title: 'Top', link: '/top' },
+    { title: 'Trending', link: '/trending' },
     { title: 'Seasonal', link: '/seasonal' },
     { title: 'Upcoming', link: '/upcoming' },
   ];

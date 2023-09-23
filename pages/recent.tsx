@@ -1,4 +1,5 @@
 import AnimeItemList from '@/components/ItemList/AnimeItemList';
+import { Container } from '@mui/material';
 
 const hotItems = [
   {
@@ -94,7 +95,15 @@ const hotItems = [
 ];
 
 function Recent() {
-  return <AnimeItemList title="Recent" items={hotItems} />;
+  return (
+    <Container>
+      <AnimeItemList
+        title="Recent"
+        description="Recently updated anime"
+        items={hotItems}
+      />
+    </Container>
+  );
 }
 
 export default Recent;

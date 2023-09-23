@@ -1,18 +1,29 @@
-import { Grid, Typography, useTheme } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import AnimeCard, { AnimeCardProps } from '@/components/Card/AnimeCard';
 
 interface AnimeItemListProps {
-  title: string;
+  title?: string;
+  description?: string;
   items: Array<AnimeCardProps>;
 }
 
-function AnimeItemList({ items, title }: AnimeItemListProps) {
+function AnimeItemList({ items, title, description }: AnimeItemListProps) {
   return (
     <div className="mt-4">
-      <Typography color="text.primary" textAlign="center" variant="h4">
-        {title}
-      </Typography>
-      <hr />
+      {title && (
+        <>
+          <Typography color="text.primary" textAlign="center" variant="h4">
+            {title}
+          </Typography>
+          <hr />
+        </>
+      )}
+
+      {description && (
+        <Typography color="text.secondary" textAlign="center" variant="body2">
+          {description}
+        </Typography>
+      )}
       <Grid container marginTop={1} gap={1} justifyContent="center">
         {items.map((item) => (
           <Grid item>
@@ -30,5 +41,10 @@ function AnimeItemList({ items, title }: AnimeItemListProps) {
     </div>
   );
 }
+
+AnimeItemList.defaultProps = {
+  title: '',
+  description: '',
+};
 
 export default AnimeItemList;
