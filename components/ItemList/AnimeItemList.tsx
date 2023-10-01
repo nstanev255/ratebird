@@ -28,6 +28,7 @@ function AnimeItemList({ items, title, description }: AnimeItemListProps) {
         {items.map((item) => (
           <Grid item>
             <AnimeCard
+              key={item.title}
               id={item.id}
               title={item.title}
               description={item.description}

@@ -71,8 +71,8 @@ function AnimeCard(props: AnimeCardProps) {
             </Typography>
           </CardContent>
         </CardActionArea>
-        <Rating name="half-rating" defaultValue={rating} precision={0.5} />
       </NextLink>
+      <Rating name="half-rating" defaultValue={rating} precision={0.5} />
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
