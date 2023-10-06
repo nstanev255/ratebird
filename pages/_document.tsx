@@ -1,5 +1,4 @@
 import { Html, Head, Main, NextScript } from 'next/document';
-import Header from '@/components/Header/Header';
 import { useTheme } from '@mui/material';
 
 export default function Document() {
