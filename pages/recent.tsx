@@ -1,6 +1,7 @@
 import AnimeItemList from '@/components/ItemList/AnimeItemList';
 import { Box, Container, Pagination } from '@mui/material';
 import Head from 'next/head';
+import getFilterTaxonomies from '@/utils/getFilterTaxonomies';
 
 const hotItems = [
   {
@@ -131,6 +132,24 @@ function Recent() {
       </Container>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const { genres, ratings, types, statuses, sorts } =
+    await getFilterTaxonomies();
+
+  const page = 'upcoming';
+
+  return {
+    props: {
+      genres,
+      ratings,
+      types,
+      statuses,
+      sorts,
+      page,
+    },
+  };
 }
 
 export default Recent;
