@@ -2,6 +2,7 @@ import { AnimeCardProps } from '@/components/Card/AnimeCard';
 import { Taxonomy } from '@/api/ratebird-api/taxonomy/taxonomy';
 import { useState } from 'react';
 import AnimeItemList from '@/components/ItemList/AnimeItemList';
+import AnimeFilter from '@/components/Filter/AnimeFilter';
 
 export type FilteredPageListingProps = {
   initialItems: Array<AnimeCardProps>;
@@ -26,6 +27,13 @@ function FilteredPageListing(props: FilteredPageListingProps) {
 
   return (
     <div>
+      <AnimeFilter
+        ratings={ratingsTaxonomy}
+        sorts={sortsTaxonomy}
+        statuses={statusTaxonomy}
+        types={typesTaxonomy}
+        genres={genresTaxonomy}
+      />
       <AnimeItemList items={items} />
     </div>
   );

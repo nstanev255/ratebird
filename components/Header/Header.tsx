@@ -27,7 +27,9 @@ function Header() {
     { title: 'Upcoming', link: '/upcoming' },
   ];
 
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [anchorElNav, setAnchorElNav] = useState<
+    null | HTMLElement | undefined
+  >(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);

@@ -138,6 +138,8 @@ export async function getStaticProps() {
   const { genres, ratings, types, statuses, sorts } =
     await getFilterTaxonomies();
 
+  const initialItems = await
+
   const page = 'upcoming';
 
   return {
