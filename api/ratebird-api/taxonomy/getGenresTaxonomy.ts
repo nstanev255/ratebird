@@ -9,8 +9,6 @@ async function getGenresTaxonomy(): Promise<Array<Taxonomy>> {
 
     return response.data;
   } catch (e) {
-    console.error('error::', e);
-
     return [];
   }
 }

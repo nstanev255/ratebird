@@ -1,38 +1,28 @@
 import { AnimeCardProps } from '@/components/Card/AnimeCard';
-import { Taxonomy } from '@/api/ratebird-api/taxonomy/taxonomy';
 import { useState } from 'react';
 import AnimeItemList from '@/components/ItemList/AnimeItemList';
 import AnimeFilter from '@/components/Filter/AnimeFilter';
+import { FilterTaxonomies } from '@/utils/getFilterTaxonomies';
+import { Anime } from '@/api/ratebird-api/anime';
 
 export type FilteredPageListingProps = {
-  initialItems: Array<AnimeCardProps>;
-  statusTaxonomy: Array<Taxonomy>;
-  ratingsTaxonomy: Array<Taxonomy>;
-  sortsTaxonomy: Array<Taxonomy>;
-  typesTaxonomy: Array<Taxonomy>;
-  genresTaxonomy: Array<Taxonomy>;
+  initialItems: Array<Anime>;
+  taxonomies: FilterTaxonomies;
 };
 
 function FilteredPageListing(props: FilteredPageListingProps) {
-  const {
-    initialItems,
-    statusTaxonomy,
-    ratingsTaxonomy,
-    genresTaxonomy,
-    typesTaxonomy,
-    sortsTaxonomy,
-  } = props;
+  const { initialItems, taxonomies } = props;
 
-  const [items, setItems] = useState<Array<AnimeCardProps>>(initialItems);
+  const [items, setItems] = useState<Array<Anime>>(initialItems);
 
   return (
     <div>
       <AnimeFilter
-        ratings={ratingsTaxonomy}
-        sorts={sortsTaxonomy}
-        statuses={statusTaxonomy}
-        types={typesTaxonomy}
-        genres={genresTaxonomy}
+        ratings={taxonomies.ratings}
+        sorts={taxonomies.sorts}
+        statuses={taxonomies.statuses}
+        types={taxonomies.types}
+        genres={taxonomies.genres}
       />
       <AnimeItemList items={items} />
     </div>

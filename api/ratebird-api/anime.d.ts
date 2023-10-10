@@ -58,6 +58,7 @@ export type Anime = {
   members?: number;
   favorites?: string;
   background?: string;
+  synopsis?: string;
   season?: string;
   year?: number;
   broadcast: Broadcast;

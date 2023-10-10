@@ -1,6 +1,14 @@
 import AnimeItemList from '@/components/ItemList/AnimeItemList';
 import { Box, Container, Pagination } from '@mui/material';
 import Head from 'next/head';
+import getFilterTaxonomies, {
+  FilterTaxonomies,
+} from '@/utils/getFilterTaxonomies';
+import getInitialAnimeListing from '@/utils/getInitialAnimeListing';
+import FilteredPageListing from '@/components/PageListing/FilteredPageListing';
+import { Property } from 'csstype';
+import Filter = Property.Filter;
+import { SearchAnimeResponse } from '@/api/ratebird-api/getSearchAnime';
 
 const hotItems = [
   {
@@ -113,24 +121,40 @@ const hotItems = [
   },
 ];
 
-function Upcoming() {
+type CommonProps = {
+  taxonomies: FilterTaxonomies;
+  initialAnimeSearch: SearchAnimeResponse;
+  page: string;
+};
+
+function Upcoming({ taxonomies, initialAnimeSearch, page }: CommonProps) {
   return (
     <>
       <Head>
         <title>Ratebird | Upcoming</title>
       </Head>
       <Container>
-        <AnimeItemList
-          title="Upcoming"
-          description="Upcoming anime"
-          items={hotItems}
+        <FilteredPageListing
+          initialItems={initialAnimeSearch.data}
+          taxonomies={taxonomies}
         />
-        <Box marginTop={1} display="flex" justifyContent="center">
-          <Pagination sx={{ textAlign: 'center' }} count={10} />
-        </Box>
       </Container>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const taxonomies = await getFilterTaxonomies();
+
+  const page = 'upcoming';
+  const initialAnimeSearch = await getInitialAnimeListing('upcoming');
+  return {
+    props: {
+      taxonomies,
+      initialAnimeSearch,
+      page,
+    },
+  };
 }
 
 export default Upcoming;
