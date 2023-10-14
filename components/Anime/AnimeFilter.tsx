@@ -8,14 +8,11 @@ import {
   SelectChangeEvent,
   TextField,
 } from '@mui/material';
-import { useState, useEffect, SetStateAction } from 'react';
-import { MinimumAnime } from '@/api/ratebird-api/anime';
-import getSearchAnime, {
-  SearchAnimeRequest,
-} from '@/api/ratebird-api/getSearchAnime';
-import { PaginationMetadata } from '@/components/Anime/Pagination';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import handleQueryParams from '@/utils/handleQueryParams';
+import { useDispatch } from 'react-redux';
+import dispatchQueryParams from '@/utils/dispatchQueryParams';
 
 export type AnimeFilterProps = {
   ratingsTaxonomy: Array<Taxonomy>;
@@ -23,9 +20,6 @@ export type AnimeFilterProps = {
   statusesTaxonomy: Array<Taxonomy>;
   typesTaxonomy: Array<Taxonomy>;
   genresTaxonomy: Array<Taxonomy>;
-
-  setItems(state: SetStateAction<Array<MinimumAnime>>): void;
-  setPagination(state: SetStateAction<PaginationMetadata>): void;
 
   initialStatus: string | undefined;
 };
@@ -36,9 +30,6 @@ function AnimeFilter({
   typesTaxonomy,
   statusesTaxonomy,
   genresTaxonomy,
-
-  setItems,
-  setPagination,
   initialStatus = '',
 }: AnimeFilterProps) {
   const [genresValue, setGenresValue] = useState<string[]>([]);
@@ -53,6 +44,7 @@ function AnimeFilter({
     return '';
   });
   const [title, setTitle] = useState<string>('');
+  const dispatch = useDispatch();
   const router = useRouter();
 
   const handleGenreChange = (event: SelectChangeEvent<typeof genresValue>) => {
@@ -63,7 +55,7 @@ function AnimeFilter({
     const split = typeof value === 'string' ? value.split(',') : value;
 
     setGenresValue(split);
-    handleQueryParams(router, 'genres', split.join(','));
+    handleQueryParams(router, 'genres', split.join(',')).then(() => {});
   };
 
   const handleRatingChange = (event: SelectChangeEvent<typeof ratingValue>) => {
@@ -72,7 +64,9 @@ function AnimeFilter({
     } = event;
 
     setRatingValue(value);
-    handleQueryParams(router, 'rating', value);
+    handleQueryParams(router, 'rating', value).then(() => {
+      dispatchQueryParams(dispatch, 'rating', value);
+    });
   };
 
   const handleSortChange = (event: SelectChangeEvent<typeof sortValue>) => {
@@ -81,7 +75,9 @@ function AnimeFilter({
     } = event;
 
     setSortValue(value);
-    handleQueryParams(router, 'sort', value);
+    handleQueryParams(router, 'sort', value).then(() => {
+      dispatchQueryParams(dispatch, 'sort', value);
+    });
   };
 
   const handleTypesChange = (event: SelectChangeEvent<typeof typesValue>) => {
@@ -90,7 +86,9 @@ function AnimeFilter({
     } = event;
 
     setTypesValue(value);
-    handleQueryParams(router, 'type', value);
+    handleQueryParams(router, 'type', value).then(() => {
+      dispatchQueryParams(dispatch, 'type', value);
+    });
   };
 
   const handleStatusChange = (event: SelectChangeEvent<typeof statusValue>) => {
@@ -99,38 +97,10 @@ function AnimeFilter({
     } = event;
 
     setStatusValue(value);
-    handleQueryParams(router, 'status', value);
-  };
-
-  useEffect(() => {
-    const request: SearchAnimeRequest = {};
-
-    if (title) {
-      request.title = title;
-    }
-
-    if (ratingValue) {
-      request.rating = ratingValue;
-    }
-
-    if (sortValue) {
-      request.sort = sortValue;
-    }
-
-    if (typesValue) {
-      request.type = typesValue;
-    }
-
-    if (statusValue) {
-      request.status = statusValue;
-    }
-
-    // TODO: Implement throttling.
-    getSearchAnime(request).then((response) => {
-      setItems(response.data);
-      setPagination(response.pagination);
+    handleQueryParams(router, 'status', value).then(() => {
+      dispatchQueryParams(dispatch, 'status', value);
     });
-  }, [title, statusValue, ratingValue, sortValue, typesValue]);
+  };
 
   return (
     <div>
@@ -142,7 +112,11 @@ function AnimeFilter({
             label="Title"
             onChange={(event) => {
               setTitle(event.target.value);
-              handleQueryParams(router, 'q', event.target.value);
+              handleQueryParams(router, 'title', event.target.value).then(
+                () => {
+                  dispatchQueryParams(dispatch, 'title', event.target.value);
+                },
+              );
             }}
             variant="outlined"
           />

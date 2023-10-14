@@ -1,6 +1,7 @@
 import MUIPagination from '@mui/material/Pagination';
-import { SetStateAction } from 'react';
-import { MinimumAnime } from '@/api/ratebird-api/anime';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import dispatchQueryParams from '@/utils/dispatchQueryParams';
 
 export type PaginationMetadata = {
   last_visible_page: number;
@@ -14,17 +15,25 @@ export type PaginationMetadata = {
 
 type PaginationProps = {
   metadata: PaginationMetadata;
-
-  setPaginationMetadata(state: SetStateAction<PaginationMetadata>): void;
-  setItems(state: SetStateAction<Array<MinimumAnime>>): void;
 };
 
-function Pagination({
-  metadata,
-  setPaginationMetadata,
-  setItems,
-}: PaginationProps) {
-  return <MUIPagination count={metadata.last_visible_page} />;
+function Pagination({ metadata }: PaginationProps) {
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const dispatch = useDispatch();
+  const handleChange = (event: unknown, page: number) => {
+    if (page !== currentPage) {
+      setCurrentPage(page);
+      dispatchQueryParams(dispatch, 'page', `${page}`);
+    }
+  };
+
+  return (
+    <MUIPagination
+      page={currentPage}
+      onChange={handleChange}
+      count={metadata.last_visible_page}
+    />
+  );
 }
 
 export default Pagination;

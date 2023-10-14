@@ -8,6 +8,8 @@ import '@fontsource/roboto/700.css';
 import Header from '@/components/Header/Header';
 import useShowHeader from '@/hooks/useShowHeader';
 import { createTheme, ThemeProvider } from '@mui/material';
+import { Provider } from 'react-redux';
+import store from '@/redux/store';
 
 export default function App({ Component, pageProps }: AppProps) {
   const theme = createTheme({
@@ -15,8 +17,10 @@ export default function App({ Component, pageProps }: AppProps) {
   });
   return (
     <ThemeProvider theme={theme}>
-      {useShowHeader() && <Header />}
-      <Component {...pageProps} />
+      <Provider store={store}>
+        {useShowHeader() && <Header />}
+        <Component {...pageProps} />
+      </Provider>
     </ThemeProvider>
   );
 }

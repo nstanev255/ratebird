@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import getInitialStatusFilter from '@/utils/getInitialStatusFilter';
 import Pagination, { PaginationMetadata } from '@/components/Anime/Pagination';
 import { Grid } from '@mui/material';
+import useUpdateItemsQueryParams from '@/hooks/useUpdateItemsQueryParams';
 
 export type FilteredPageListingProps = {
   initialItems: Array<MinimumAnime>;
@@ -21,6 +22,8 @@ function FilteredPageListing(props: FilteredPageListingProps) {
   const [paginationMetadata, setPaginationMetadata] =
     useState<PaginationMetadata>(initialPagination);
 
+  useUpdateItemsQueryParams(setItems, setPaginationMetadata);
+
   return (
     <div>
       <AnimeFilter
@@ -29,17 +32,11 @@ function FilteredPageListing(props: FilteredPageListingProps) {
         statusesTaxonomy={taxonomies.statuses}
         typesTaxonomy={taxonomies.types}
         genresTaxonomy={taxonomies.genres}
-        setItems={setItems}
         initialStatus={getInitialStatusFilter(router.asPath)}
-        setPagination={setPaginationMetadata}
       />
       <AnimeItemList items={items} />
       <Grid container justifyContent="center">
-        <Pagination
-          metadata={paginationMetadata}
-          setPaginationMetadata={setPaginationMetadata}
-          setItems={setItems}
-        />
+        <Pagination metadata={paginationMetadata} />
       </Grid>
     </div>
   );
