@@ -2,6 +2,8 @@ import MUIPagination from '@mui/material/Pagination';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import dispatchQueryParams from '@/utils/dispatchQueryParams';
+import handleQueryParams from '@/utils/handleQueryParams';
+import { useRouter } from 'next/router';
 
 export type PaginationMetadata = {
   last_visible_page: number;
@@ -20,10 +22,13 @@ type PaginationProps = {
 function Pagination({ metadata }: PaginationProps) {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const dispatch = useDispatch();
+  const router = useRouter();
   const handleChange = (event: unknown, page: number) => {
     if (page !== currentPage) {
       setCurrentPage(page);
-      dispatchQueryParams(dispatch, 'page', `${page}`);
+      handleQueryParams(router, 'page', `${page}`).then(() => {
+        dispatchQueryParams(dispatch, 'page', `${page}`);
+      });
     }
   };
 
