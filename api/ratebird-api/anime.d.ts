@@ -70,3 +70,11 @@ export type Anime = {
   themes: Array<Relation>;
   demographics: Array<Relation>;
 };
+
+export type MinimumAnime = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  genres: Array<string>;
+};

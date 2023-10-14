@@ -3,17 +3,17 @@ import { useState } from 'react';
 import AnimeItemList from '@/components/ItemList/AnimeItemList';
 import AnimeFilter from '@/components/Filter/AnimeFilter';
 import { FilterTaxonomies } from '@/utils/getFilterTaxonomies';
-import { Anime } from '@/api/ratebird-api/anime';
+import { MinimumAnime } from '@/api/ratebird-api/anime';
 
 export type FilteredPageListingProps = {
-  initialItems: Array<Anime>;
+  initialItems: Array<MinimumAnime>;
   taxonomies: FilterTaxonomies;
 };
 
 function FilteredPageListing(props: FilteredPageListingProps) {
   const { initialItems, taxonomies } = props;
 
-  const [items, setItems] = useState<Array<Anime>>(initialItems);
+  const [items, setItems] = useState<Array<MinimumAnime>>(initialItems);
 
   return (
     <div>
@@ -23,6 +23,8 @@ function FilteredPageListing(props: FilteredPageListingProps) {
         statusesTaxonomy={taxonomies.statuses}
         typesTaxonomy={taxonomies.types}
         genresTaxonomy={taxonomies.genres}
+        setItems={setItems}
+        setPagination={() => {}}
       />
       <AnimeItemList items={items} />
     </div>

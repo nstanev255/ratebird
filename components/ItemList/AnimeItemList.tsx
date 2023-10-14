@@ -1,38 +1,14 @@
 import { Grid, Typography } from '@mui/material';
 import AnimeCard from '@/components/Card/AnimeCard';
-import { Anime, Relation, Title } from '@/api/ratebird-api/anime';
+import { MinimumAnime } from '@/api/ratebird-api/anime';
 
 interface AnimeItemListProps {
   title?: string;
   description?: string;
-  items: Array<Anime>;
+  items: Array<MinimumAnime>;
 }
 
 function AnimeItemList({ items, title, description }: AnimeItemListProps) {
-  function renderTitle(titles: Array<Title> | undefined): string {
-    if (!titles || titles.length === 0) {
-      return '';
-    }
-
-    let readyTitle = '';
-    titles.forEach((value) => {
-      if (value.type === 'Default') {
-        readyTitle = value.title;
-      }
-    });
-
-    return readyTitle;
-  }
-
-  function genresToArray(genres: Array<Relation>): Array<string> {
-    const readyGenres = [];
-    genres.forEach((value) => {
-      readyGenres.push(value.name);
-    });
-
-    return readyGenres;
-  }
-
   return (
     <div className="mt-4">
       {title && (
@@ -53,13 +29,13 @@ function AnimeItemList({ items, title, description }: AnimeItemListProps) {
         {items.map((item) => (
           <Grid item>
             <AnimeCard
-              key={item.mal_id}
-              id={item.mal_id as string}
-              title={renderTitle(item.titles)}
-              description={item.synopsis as string}
-              image={item.images?.jpg?.image_url as string}
-              genres={genresToArray([...item.genres])}
-              rating={item.rank as number}
+              key={item.id}
+              id={item.id as never as string}
+              title={item.title}
+              description={item.description}
+              image={item.image}
+              genres={item.genres}
+              rating={5}
             />
           </Grid>
         ))}

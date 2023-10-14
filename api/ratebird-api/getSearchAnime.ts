@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Anime } from '@/api/ratebird-api/anime';
+import { Anime, MinimumAnime } from '@/api/ratebird-api/anime';
 import { Pagination } from '@/api/ratebird-api/pagination';
 
 export type SearchAnimeRequest = {
@@ -21,7 +21,7 @@ export type SearchAnimeRequest = {
 };
 
 export type SearchAnimeResponse = {
-  data: Array<Anime>;
+  data: Array<MinimumAnime>;
   pagination: Pagination;
 };
 

@@ -8,7 +8,12 @@ import {
   SelectChangeEvent,
   TextField,
 } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect, SetStateAction } from 'react';
+import { MinimumAnime } from '@/api/ratebird-api/anime';
+import getSearchAnime, {
+  SearchAnimeRequest,
+} from '@/api/ratebird-api/getSearchAnime';
+import { Pagination } from '@/api/ratebird-api/pagination';
 
 export type AnimeFilterProps = {
   ratingsTaxonomy: Array<Taxonomy>;
@@ -16,6 +21,9 @@ export type AnimeFilterProps = {
   statusesTaxonomy: Array<Taxonomy>;
   typesTaxonomy: Array<Taxonomy>;
   genresTaxonomy: Array<Taxonomy>;
+
+  setItems(state: SetStateAction<Array<MinimumAnime>>): void;
+  setPagination(state: SetStateAction<Pagination>): void;
 };
 
 function AnimeFilter({
@@ -24,6 +32,9 @@ function AnimeFilter({
   typesTaxonomy,
   statusesTaxonomy,
   genresTaxonomy,
+
+  setItems,
+  setPagination,
 }: AnimeFilterProps) {
   const [genresValue, setGenresValue] = useState<string[]>([]);
   const [ratingValue, setRatingValue] = useState<string>('');
@@ -71,6 +82,36 @@ function AnimeFilter({
 
     setStatusValue(value);
   };
+
+  useEffect(() => {
+    const request: SearchAnimeRequest = {};
+
+    if (title) {
+      request.title = title;
+    }
+
+    if (ratingValue) {
+      request.rating = ratingValue;
+    }
+
+    if (sortValue) {
+      request.sort = sortValue;
+    }
+
+    if (typesValue) {
+      request.type = typesValue;
+    }
+
+    if (statusValue) {
+      request.status = statusValue;
+    }
+
+    // TODO: Implement throttling.
+    getSearchAnime(request).then((response) => {
+      setItems(response.data);
+      setPagination(response.pagination);
+    });
+  }, [title, statusValue, ratingValue, sortValue, typesValue]);
 
   return (
     <div>
