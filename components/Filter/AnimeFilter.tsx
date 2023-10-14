@@ -14,6 +14,8 @@ import getSearchAnime, {
   SearchAnimeRequest,
 } from '@/api/ratebird-api/getSearchAnime';
 import { Pagination } from '@/api/ratebird-api/pagination';
+import { useRouter } from 'next/router';
+import handleQueryParams from '@/utils/handleQueryParams';
 
 export type AnimeFilterProps = {
   ratingsTaxonomy: Array<Taxonomy>;
@@ -51,13 +53,17 @@ function AnimeFilter({
     return '';
   });
   const [title, setTitle] = useState<string>('');
+  const router = useRouter();
 
   const handleGenreChange = (event: SelectChangeEvent<typeof genresValue>) => {
     const {
       target: { value },
     } = event;
 
-    setGenresValue(typeof value === 'string' ? value.split(',') : value);
+    const split = typeof value === 'string' ? value.split(',') : value;
+
+    setGenresValue(split);
+    handleQueryParams(router, 'genres', split.join(','));
   };
 
   const handleRatingChange = (event: SelectChangeEvent<typeof ratingValue>) => {
@@ -66,6 +72,7 @@ function AnimeFilter({
     } = event;
 
     setRatingValue(value);
+    handleQueryParams(router, 'rating', value);
   };
 
   const handleSortChange = (event: SelectChangeEvent<typeof sortValue>) => {
@@ -74,6 +81,7 @@ function AnimeFilter({
     } = event;
 
     setSortValue(value);
+    handleQueryParams(router, 'sort', value);
   };
 
   const handleTypesChange = (event: SelectChangeEvent<typeof typesValue>) => {
@@ -82,6 +90,7 @@ function AnimeFilter({
     } = event;
 
     setTypesValue(value);
+    handleQueryParams(router, 'type', value);
   };
 
   const handleStatusChange = (event: SelectChangeEvent<typeof statusValue>) => {
@@ -90,6 +99,7 @@ function AnimeFilter({
     } = event;
 
     setStatusValue(value);
+    handleQueryParams(router, 'status', value);
   };
 
   useEffect(() => {
@@ -132,6 +142,7 @@ function AnimeFilter({
             label="Title"
             onChange={(event) => {
               setTitle(event.target.value);
+              handleQueryParams(router, 'q', event.target.value);
             }}
             variant="outlined"
           />

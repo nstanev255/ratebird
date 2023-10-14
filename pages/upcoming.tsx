@@ -10,10 +10,9 @@ import { SearchAnimeResponse } from '@/api/ratebird-api/getSearchAnime';
 type CommonProps = {
   taxonomies: FilterTaxonomies;
   initialAnimeSearch: SearchAnimeResponse;
-  page: string;
 };
 
-function Upcoming({ taxonomies, initialAnimeSearch, page }: CommonProps) {
+function Upcoming({ taxonomies, initialAnimeSearch }: CommonProps) {
   return (
     <>
       <Head>
