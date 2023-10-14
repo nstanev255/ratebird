@@ -13,10 +13,17 @@ function useUpdateItemsQueryParams(
 ) {
   const queryParams = useSelector(selectQueryParams);
   const [loading, setLoading] = useState(false);
-
-  console.log(queryParams);
+  const [initialLoad, setInitialLoad] = useState(false);
 
   useEffect(() => {
+    // Only do the useEffect when we have someone write something.
+    if (!initialLoad && Object.keys(queryParams).length > 0) {
+      setInitialLoad(true);
+    }
+
+    if (!initialLoad) {
+      return;
+    }
     const doRequest = async () => {
       setLoading(true);
       const request = queryParams as SearchAnimeRequest;
