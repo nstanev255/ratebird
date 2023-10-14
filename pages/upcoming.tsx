@@ -21,6 +21,7 @@ function Upcoming({ taxonomies, initialAnimeSearch }: CommonProps) {
       <Container>
         <FilteredPageListing
           initialItems={initialAnimeSearch.data}
+          initialPagination={initialAnimeSearch.pagination}
           taxonomies={taxonomies}
         />
       </Container>

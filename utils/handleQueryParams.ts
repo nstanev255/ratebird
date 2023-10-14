@@ -1,5 +1,16 @@
 import { NextRouter } from 'next/router';
 
+/**
+ * This function will add/remove query params based on if the value is there.
+ * @param router
+ *   The router object.
+ * @param queryKey
+ *   The query key that needs to be added.
+ * @param queryValue
+ *   The query value that we need to add.
+ *
+ *   ?{queryKey}={queryValue}
+ */
 function handleQueryParams(
   router: NextRouter,
   queryKey: string,

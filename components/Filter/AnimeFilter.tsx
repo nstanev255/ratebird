@@ -13,7 +13,7 @@ import { MinimumAnime } from '@/api/ratebird-api/anime';
 import getSearchAnime, {
   SearchAnimeRequest,
 } from '@/api/ratebird-api/getSearchAnime';
-import { Pagination } from '@/api/ratebird-api/pagination';
+import { PaginationMetadata } from '@/components/Pagination/pagination';
 import { useRouter } from 'next/router';
 import handleQueryParams from '@/utils/handleQueryParams';
 
@@ -25,7 +25,7 @@ export type AnimeFilterProps = {
   genresTaxonomy: Array<Taxonomy>;
 
   setItems(state: SetStateAction<Array<MinimumAnime>>): void;
-  setPagination(state: SetStateAction<Pagination>): void;
+  setPagination(state: SetStateAction<PaginationMetadata>): void;
 
   initialStatus: string | undefined;
 };
