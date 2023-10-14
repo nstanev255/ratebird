@@ -6,6 +6,7 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
+  TextField,
 } from '@mui/material';
 import { useState } from 'react';
 
@@ -29,6 +30,7 @@ function AnimeFilter({
   const [sortValue, setSortValue] = useState<string>('');
   const [typesValue, setTypesValue] = useState<string>('');
   const [statusValue, setStatusValue] = useState<string>('');
+  const [title, setTitle] = useState<string>('');
 
   const handleGenreChange = (event: SelectChangeEvent<typeof genresValue>) => {
     const {
@@ -74,6 +76,17 @@ function AnimeFilter({
     <div>
       <Container>
         <FormControl sx={{ m: 1, minWidth: 120 }}>
+          <TextField
+            id="outlined-basic"
+            value={title}
+            label="Title"
+            onChange={(event) => {
+              setTitle(event.target.value);
+            }}
+            variant="outlined"
+          />
+        </FormControl>
+        <FormControl sx={{ m: 1, minWidth: 120 }}>
           <InputLabel id="genres-filter-label">Genres</InputLabel>
           <Select
             labelId="genres-filter-label"
@@ -95,7 +108,6 @@ function AnimeFilter({
           <Select
             labelId="ratings-filter-label"
             value={ratingValue}
-            defaultValue="-1"
             onChange={handleRatingChange}
           >
             {ratingsTaxonomy.map((status) => (
@@ -111,7 +123,6 @@ function AnimeFilter({
           <Select
             labelId="types-filter-label"
             value={typesValue}
-            defaultValue="-1"
             onChange={handleTypesChange}
           >
             {typesTaxonomy.map((status) => (
@@ -127,7 +138,6 @@ function AnimeFilter({
           <Select
             labelId="status-filter-label"
             value={statusValue}
-            defaultValue="-1"
             onChange={handleStatusChange}
           >
             {statusesTaxonomy.map((status) => (
