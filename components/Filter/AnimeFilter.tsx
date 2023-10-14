@@ -21,10 +21,11 @@ export type AnimeFilterProps = {
   statusesTaxonomy: Array<Taxonomy>;
   typesTaxonomy: Array<Taxonomy>;
   genresTaxonomy: Array<Taxonomy>;
-  initialFilter?: string;
 
   setItems(state: SetStateAction<Array<MinimumAnime>>): void;
   setPagination(state: SetStateAction<Pagination>): void;
+
+  initialStatus: string | undefined;
 };
 
 function AnimeFilter({
@@ -33,18 +34,18 @@ function AnimeFilter({
   typesTaxonomy,
   statusesTaxonomy,
   genresTaxonomy,
-  initialFilter,
 
   setItems,
   setPagination,
+  initialStatus = '',
 }: AnimeFilterProps) {
   const [genresValue, setGenresValue] = useState<string[]>([]);
   const [ratingValue, setRatingValue] = useState<string>('');
   const [sortValue, setSortValue] = useState<string>('');
   const [typesValue, setTypesValue] = useState<string>('');
   const [statusValue, setStatusValue] = useState<string>(() => {
-    if (initialFilter && initialFilter === 'upcoming') {
-      return 'upcoming';
+    if (initialStatus) {
+      return initialStatus;
     }
 
     return '';

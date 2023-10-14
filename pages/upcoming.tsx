@@ -21,7 +21,6 @@ function Upcoming({ taxonomies, initialAnimeSearch, page }: CommonProps) {
       </Head>
       <Container>
         <FilteredPageListing
-          page={page}
           initialItems={initialAnimeSearch.data}
           taxonomies={taxonomies}
         />
@@ -32,14 +31,11 @@ function Upcoming({ taxonomies, initialAnimeSearch, page }: CommonProps) {
 
 export async function getStaticProps() {
   const taxonomies = await getFilterTaxonomies();
-
-  const page = 'upcoming';
   const initialAnimeSearch = await getInitialAnimeListing('upcoming');
   return {
     props: {
       taxonomies,
       initialAnimeSearch,
-      page,
     },
   };
 }
