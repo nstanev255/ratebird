@@ -1,6 +1,6 @@
 import MUIPagination from '@mui/material/Pagination';
 import { SetStateAction } from 'react';
-import { Anime } from '@/api/ratebird-api/anime';
+import { MinimumAnime } from '@/api/ratebird-api/anime';
 
 export type PaginationMetadata = {
   last_visible_page: number;
@@ -15,8 +15,8 @@ export type PaginationMetadata = {
 type PaginationProps = {
   metadata: PaginationMetadata;
 
-  setPaginationMetadata: SetStateAction<PaginationMetadata>;
-  setItems: SetStateAction<Array<Anime>>;
+  setPaginationMetadata(state: SetStateAction<PaginationMetadata>): void;
+  setItems(state: SetStateAction<Array<MinimumAnime>>): void;
 };
 
 function Pagination({

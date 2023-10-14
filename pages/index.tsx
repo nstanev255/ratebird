@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Carousel from '@/components/Carousel/Carousel';
 import { CarouselItemType } from '@/components/Carousel/CarouselItem';
 import { Container } from '@mui/material';
-import AnimeItemList from '@/components/ItemList/AnimeItemList';
+import AnimeItemList from '@/components/Anime/AnimeItemList';
 import getUpcomingTrending from '@/api/ratebird-api/getUpcomingTrending';
 import getSeasonalTrending from '@/api/ratebird-api/getSeasonalTrending';
 import { MinimumAnime } from '@/api/ratebird-api/anime';

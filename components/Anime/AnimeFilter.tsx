@@ -13,7 +13,7 @@ import { MinimumAnime } from '@/api/ratebird-api/anime';
 import getSearchAnime, {
   SearchAnimeRequest,
 } from '@/api/ratebird-api/getSearchAnime';
-import { PaginationMetadata } from '@/components/Pagination/pagination';
+import { PaginationMetadata } from '@/components/Anime/Pagination';
 import { useRouter } from 'next/router';
 import handleQueryParams from '@/utils/handleQueryParams';
 

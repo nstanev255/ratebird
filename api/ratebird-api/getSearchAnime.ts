@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { MinimumAnime } from '@/api/ratebird-api/anime';
-import { PaginationMetadata } from '@/components/Pagination/Pagination';
+import { PaginationMetadata } from '@/components/Anime/Pagination';
 
 export type SearchAnimeRequest = {
   page?: number;

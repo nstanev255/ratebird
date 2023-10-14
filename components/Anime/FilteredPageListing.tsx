@@ -1,13 +1,11 @@
 import { useState } from 'react';
-import AnimeItemList from '@/components/ItemList/AnimeItemList';
-import AnimeFilter from '@/components/Filter/AnimeFilter';
+import AnimeItemList from '@/components/Anime/AnimeItemList';
+import AnimeFilter from '@/components/Anime/AnimeFilter';
 import { FilterTaxonomies } from '@/utils/getFilterTaxonomies';
 import { MinimumAnime } from '@/api/ratebird-api/anime';
 import { useRouter } from 'next/router';
 import getInitialStatusFilter from '@/utils/getInitialStatusFilter';
-import Pagination, {
-  PaginationMetadata,
-} from '@/components/Pagination/Pagination';
+import Pagination, { PaginationMetadata } from '@/components/Anime/Pagination';
 import { Grid } from '@mui/material';
 
 export type FilteredPageListingProps = {
@@ -33,11 +31,15 @@ function FilteredPageListing(props: FilteredPageListingProps) {
         genresTaxonomy={taxonomies.genres}
         setItems={setItems}
         initialStatus={getInitialStatusFilter(router.asPath)}
-        setPagination={() => {}}
+        setPagination={setPaginationMetadata}
       />
       <AnimeItemList items={items} />
       <Grid container justifyContent="center">
-        <Pagination metadata={paginationMetadata} />
+        <Pagination
+          metadata={paginationMetadata}
+          setPaginationMetadata={setPaginationMetadata}
+          setItems={setItems}
+        />
       </Grid>
     </div>
   );

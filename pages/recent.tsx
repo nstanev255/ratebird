@@ -1,4 +1,4 @@
-import AnimeItemList from '@/components/ItemList/AnimeItemList';
+import AnimeItemList from '@/components/Anime/AnimeItemList';
 import { Box, Container, Pagination } from '@mui/material';
 import Head from 'next/head';
 import getFilterTaxonomies from '@/utils/getFilterTaxonomies';

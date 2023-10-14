@@ -1,5 +1,5 @@
 import { Grid, Typography } from '@mui/material';
-import AnimeCard from '@/components/Card/AnimeCard';
+import AnimeCard from '@/components/Anime/AnimeCard';
 import { MinimumAnime } from '@/api/ratebird-api/anime';
 
 interface AnimeItemListProps {

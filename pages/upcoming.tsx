@@ -4,7 +4,7 @@ import getFilterTaxonomies, {
   FilterTaxonomies,
 } from '@/utils/getFilterTaxonomies';
 import getInitialAnimeListing from '@/utils/getInitialAnimeListing';
-import FilteredPageListing from '@/components/PageListing/FilteredPageListing';
+import FilteredPageListing from '@/components/Anime/FilteredPageListing';
 import { SearchAnimeResponse } from '@/api/ratebird-api/getSearchAnime';
 
 type CommonProps = {
