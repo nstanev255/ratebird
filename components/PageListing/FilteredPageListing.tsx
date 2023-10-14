@@ -18,11 +18,11 @@ function FilteredPageListing(props: FilteredPageListingProps) {
   return (
     <div>
       <AnimeFilter
-        ratings={taxonomies.ratings}
-        sorts={taxonomies.sorts}
-        statuses={taxonomies.statuses}
-        types={taxonomies.types}
-        genres={taxonomies.genres}
+        ratingsTaxonomy={taxonomies.ratings}
+        sortsTaxonomy={taxonomies.sorts}
+        statusesTaxonomy={taxonomies.statuses}
+        typesTaxonomy={taxonomies.types}
+        genresTaxonomy={taxonomies.genres}
       />
       <AnimeItemList items={items} />
     </div>
